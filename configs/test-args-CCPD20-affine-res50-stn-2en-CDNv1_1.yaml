@@ -1,0 +1,78 @@
+# train process def
+resume: true 
+checkpoint_dir: 'checkpoints/CCPD20-affine-res50-stn-2en-CDNv1_1-bf'
+ckpt_file: ALPR_res50_fm32_stn_2en_CDNv1_1_633228.pth
+num_epochs: 50
+device: cuda
+amp_dtype: fp16
+# GradScaler_enable: false
+
+# dataset:
+#   name: CCPD_4pBbox_affin_noNormAug_CDN_0size
+#   csvPath: datasets/CCPD/CCPD_train.csv
+#   # datasets/CCPD2018/ccpd_base_A.csv
+#   # datasets/CCPD/CCPD_train.csv
+#   batch_size: 16
+#   n_worker: 10
+val_set:
+  name: CCPD_4pBbox_0size
+  csvPath: datasets/CCPD/CCPD_total_test.csv
+  # datasets/CCPD/CCPD_test_sample10.csv.gz
+  # datasets/CCPD/CCPD_total_test.csv
+  # datasets/CCPD2018/ccpd_others_5%val.csv
+  # datasets/CCPD2018/ccpd_base_B.csv
+  # datasets/CCPD2018/ccpd_B+O_test.csv
+  # datasets/CCPD2018/ccpd_base_A.csv
+  # datasets/CCPD/CCPD_test_sample10.csv.gz
+  batch_size: 60
+  n_worker: 10
+  evaluator:
+    name: IoU_LPs_evaluator
+  csvPaths:
+    - datasets/CCPD/ccpd_blur_test.csv
+    - datasets/CCPD/ccpd_challenge_test.csv
+    - datasets/CCPD/ccpd_db_test.csv
+    - datasets/CCPD/ccpd_fn_test.csv
+    - datasets/CCPD/ccpd_green_test.csv
+    - datasets/CCPD/ccpd_rotate_test.csv
+    - datasets/CCPD/ccpd_tilt_test.csv
+    - datasets/CCPD/ccpd_weather_test.csv
+
+model:
+  name: ALPR_res50_fm32_stn_2en_CDNv1_1
+
+# criterion:
+#   name: Infer_DenoiseLoss
+#   infer_cfg:
+#     k_ce: 1
+#     k_l1: 5
+#     k_giou: 2
+#     n_class: 2
+#     k_l11: 5
+#     k_giou1: 2
+#     k_string: 10
+#     void_class_idx: 0
+#     void_class_weight: 0.01
+#   CDN_cfg:
+#     k_ce: 1
+#     k_l1: 5
+#     k_giou: 2
+#     k_l11: 5
+#     k_giou1: 2
+#     k_string: 10
+
+# optim:
+#   name: Adam
+#   lr: 1e-5
+#   betas: [0.9,0.999]
+#   weight_decay: 0
+
+# lr_scheduler:
+#   # name: LambdaLR
+#   name: StepLR
+#   step_size: 20
+#   gamma: 0.1
+
+# logger:
+  log_dir: "runs/CCPD20-affine-res50-stn-2en-CDNv1_1-bf"
+  # tensorboard --logdir=runs
