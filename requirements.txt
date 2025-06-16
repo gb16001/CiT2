@@ -2,3 +2,5 @@ transformers
 timm
 albumentations
 jpeg4py
+tensorboard
+dynaconf
