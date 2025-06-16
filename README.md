@@ -3,7 +3,8 @@ CiT2: End-to-End Automatic License Plate Recognition with Contrastive Denoising 
 ## Usage
 ### install requirements
 install torch with CUDA first, then 
-`pip install -r requirements.txt`
+`pip install -r requirements.txt`  
+`libjpeg-turbo` is needed. If not available, please use cv2 to import img at `datasets\CCPD.py` 
 ### Train 
 
 - download [CCPD](https://github.com/detectRecog/CCPD), [CCPD18](https://github.com/tomorrow1210/CCPD) and put at `dataset/CCPD` and `datasets/CCPD2018` 
