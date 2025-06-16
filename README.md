@@ -1,5 +1,5 @@
 # CiT2
-CiT2: End-to-End Automatic License Plate Recognition with Contrastive Denoising Learning
+CiT2: Single-Stage Automatic License Plate Recognition with Contrastive Denoising Learning
 ## Usage
 ### install requirements
 install torch with CUDA first, then 
